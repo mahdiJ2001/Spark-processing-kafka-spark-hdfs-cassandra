@@ -28,6 +28,16 @@ public class StreamProcessor {
                 .set("spark.cassandra.connection.port", prop.getProperty("tn.enit.transactions.cassandra.port"))
                 .set("spark.cassandra.auth.username", prop.getProperty("tn.enit.transactions.cassandra.username"))
                 .set("spark.cassandra.auth.password", prop.getProperty("tn.enit.transactions.cassandra.password"));
+        //
+
+        if (args.length > 0 && args[0].equalsIgnoreCase("batch")) {
+            String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
+            SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
+            TransactionBatch.extractInsights(sparkSession, hdfsPath); // Call batch processing method
+            return; // Exit after batch processing
+        }
+
+        //
 
         JavaStreamingContext streamingContext = new JavaStreamingContext(conf, Durations.seconds(10));
         JavaSparkContext sc = streamingContext.sparkContext();
