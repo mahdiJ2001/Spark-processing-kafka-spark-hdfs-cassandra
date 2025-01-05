@@ -15,6 +15,8 @@ import java.util.Collections;
 public class TransactionBatch {
 
     public static void extractInsights(SparkSession sparkSession, String hdfsPath) {
+
+        System.out.println("extract insights declenchée");
         // Load transactions from HDFS
         Dataset<Row> transactions = sparkSession.read().parquet(hdfsPath);
 
@@ -43,19 +45,25 @@ public class TransactionBatch {
 
     private static void saveTotalTransactionsToCassandra(SparkSession sparkSession, long totalTransactions) {
         // Create a Row to save to Cassandra
+        System.out.println("Save total declenchée");
         Row row = RowFactory.create(totalTransactions);
         Dataset<Row> totalTransactionDataset = sparkSession.createDataFrame(Collections.singletonList(row),
                 DataTypes.createStructType(new StructField[]{
                         DataTypes.createStructField("total", DataTypes.LongType, false)
                 }));
 
+        System.out.println("Dataset struct type created");
         // Convert Dataset<Row> to JavaRDD<Row>
         JavaRDD<Row> totalTransactionRDD = totalTransactionDataset.javaRDD();
+
+        System.out.println("RDD rempli");
 
         // Save to Cassandra
         CassandraJavaUtil.javaFunctions(totalTransactionRDD)
                 .writerBuilder("transactionkeyspace", "total_transactions", CassandraJavaUtil.mapToRow(Row.class))
                 .saveToCassandra();
+
+        System.out.println("Write Builder effectué");
     }
 
     private static void saveCategoryBreakdownToCassandra(Dataset<Row> categoryBreakdown) {

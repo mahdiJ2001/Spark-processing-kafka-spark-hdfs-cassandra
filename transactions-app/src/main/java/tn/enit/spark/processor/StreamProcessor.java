@@ -57,15 +57,13 @@ public class StreamProcessor {
                 System.out.println("Received " + rdd.count() + " transactions");
 
                 // Save transactions to Cassandra
-                TransactionProcessor.saveTransactionsToCassandra(transactionStream);
+                TransactionProcessor.saveTransactionsToCassandra(rdd); // Pass the rdd
 
                 // Save transactions to HDFS
                 SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
                 String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
-                TransactionProcessor.saveTransactionsToHDFS(transactionStream, hdfsPath, sparkSession);
+                TransactionProcessor.saveTransactionsToHDFS(rdd, hdfsPath, sparkSession); // Pass the rdd
 
-                // Extract insights from HDFS
-                TransactionBatch.extractInsights(sparkSession, hdfsPath);
             } else {
                 System.out.println("No transactions received in this batch");
             }
