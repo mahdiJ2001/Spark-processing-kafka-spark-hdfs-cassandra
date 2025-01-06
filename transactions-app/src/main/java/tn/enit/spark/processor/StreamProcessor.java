@@ -37,7 +37,7 @@ public class StreamProcessor {
         kafkaParams.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, prop.getProperty("tn.enit.transactions.brokerlist"));
         kafkaParams.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         kafkaParams.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, TransactionDataDeserializer.class);
-        kafkaParams.put(ConsumerConfig.GROUP_ID_CONFIG, prop.getProperty("tn.enit.transactions.group.id"));
+        kafkaParams.put(ConsumerConfig.GROUP_ID_CONFIG, prop.getProperty("tn.enit.transactions.topic"));
         kafkaParams.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, prop.getProperty("tn.enit.transactions.resetType"));
         kafkaParams.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
@@ -52,20 +52,29 @@ public class StreamProcessor {
         // Map to get only the Transaction objects
         JavaDStream<Transaction> transactionStream = stream.map(ConsumerRecord::value);
 
+        
+        System.out.println("transactionStream aaaa");
+        transactionStream.print();
+        
+        TransactionProcessor.saveTransactionsToCassandra(transactionStream);
+        SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
+        String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
+        TransactionProcessor.saveTransactionsToHDFS(transactionStream, hdfsPath, sparkSession);
+
         transactionStream.foreachRDD(rdd -> {
             if (!rdd.isEmpty()) {
                 System.out.println("Received " + rdd.count() + " transactions");
 
                 // Save transactions to Cassandra
-                TransactionProcessor.saveTransactionsToCassandra(transactionStream);
+                //TransactionProcessor.saveTransactionsToCassandra(transactionStream);
 
                 // Save transactions to HDFS
-                SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
-                String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
-                TransactionProcessor.saveTransactionsToHDFS(transactionStream, hdfsPath, sparkSession);
+                //SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
+                //String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
+                //TransactionProcessor.saveTransactionsToHDFS(transactionStream, hdfsPath, sparkSession);
 
                 // Extract insights from HDFS
-                TransactionBatch.extractInsights(sparkSession, hdfsPath);
+                //TransactionBatch.extractInsights(sparkSession, hdfsPath);
             } else {
                 System.out.println("No transactions received in this batch");
             }

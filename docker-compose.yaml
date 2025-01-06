@@ -126,3 +126,5 @@ services:
     ports:
       - 50075:50075
       - 50010:50010
+volumes:
+  namenode:

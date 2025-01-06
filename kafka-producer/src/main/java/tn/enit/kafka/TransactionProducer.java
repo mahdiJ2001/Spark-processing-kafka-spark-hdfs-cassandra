@@ -27,7 +27,8 @@ public class TransactionProducer {
         Random rand = new Random();
         double minAmount = 10.0;
         double maxAmount = 1000.0;
-        System.out.println("Sending transactions...");
+        System.out.println("S" +
+                "ending transactions...");
 
         while (true) {
             Transaction transaction = generateTransaction(rand, minAmount, maxAmount);
@@ -36,7 +37,7 @@ public class TransactionProducer {
 
             System.out.printf("Sent Transaction: ID=%s, OwnerID=%s, ReceiverID=%s, Amount=%.2f, Category=%s, Time=%s, Status=%s, Location=%s%n",
                     transaction.getId(), transaction.getOwnerId(), transaction.getReceiverId(),
-                    transaction.getAmount(), transaction.getCategory(), transaction.getTime(), transaction.getStatus(), location);
+                    transaction.getAmount(), transaction.getCategory(), transaction.getTime(), transaction.getStatus(), transaction.getLocation());
             producer.send(new ProducerRecord<>(topic, transaction.getId(), transaction));
             Thread.sleep(rand.nextInt(5000 - 2000) + 2000); // random delay of 2 to 5 seconds
         }

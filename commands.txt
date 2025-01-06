@@ -1,0 +1,34 @@
+
+docker exec namenode hdfs dfsadmin -safemode leave
+docker exec namenode hdfs dfs -rm -r /lambda-arch
+docker exec namenode hdfs dfs -mkdir -p /lambda-arch
+docker exec namenode hdfs dfs -mkdir -p /lambda-arch/checkpoint
+docker exec namenode hdfs dfs -mkdir -p /lambda-arch/checkpoint/temp
+docker exec namenode hdfs dfs -chmod -R 777 /lambda-arch
+docker exec namenode hdfs dfs -chown -R 777 /lambda-arch
+docker exec namenode hdfs dfs -chmod -R 777 /lambda-arch/checkpoint
+docker exec namenode hdfs dfs -chown -R 777 /lambda-arch/checkpoint
+docker exec namenode hdfs dfs -chmod -R 777 /lambda-arch/checkpoint/temp
+docker exec namenode hdfs dfs -chown -R 777 /lambda-arch/checkpoint/temp
+docker exec namenode hdfs dfs -ls /lambda-arch/checkpoint
+
+docker exec cassandra-iot cqlsh --username cassandra --password cassandra -f /schema.cql
+
+docker cp target/kafka-producer-1.0.0.jar kafka-iot:/
+docker cp target/transactions-app-1.0.0.jar spark-master:/
+
+docker exec -it kafka-iot java -jar kafka-producer-1.0.0.jar
+docker exec spark-master /spark/bin/spark-submit --class tn.enit.spark.processor.StreamProcessor /transactions-app-1.0.0.jar
+
+
+docker exec -it cassandra-iot cqlsh -u cassandra -p cassandra
+describe keyspaces;
+select * from transactionkeyspace.transactions;
+
+docker exec spark-master /spark/bin/spark-submit --class tn.enit.spark.processor.BatchProcessor /transactions-app-1.0.0.jar
+
+
+docker exec cassandra-iot cqlsh --username cassandra --password cassandra -f /schema.cql
+
+docker exec -it cassandra-iot cqlsh -u cassandra -p cassandra
+select * from transactionkeyspace.total_transactions;
