@@ -1,20 +1,17 @@
 package tn.enit.spark.entity;
 
-
 public class TotalTransactions {
-    private long totalCount;
+    private long total; // Changed from totalCount to total
 
-    public TotalTransactions(long totalCount) {
-        this.totalCount = totalCount;
+    public TotalTransactions(long total) {
+        this.total = total;
     }
 
-    public long getTotalCount() {
-        return totalCount;
+    public long getTotal() {
+        return total;
     }
 
-    public void setTotalCount(long totalCount) {
-        this.totalCount = totalCount;
+    public void setTotal(long total) {
+        this.total = total;
     }
 }
-
-

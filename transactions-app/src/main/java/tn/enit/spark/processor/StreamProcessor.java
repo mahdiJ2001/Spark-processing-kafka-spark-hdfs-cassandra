@@ -4,7 +4,9 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.*;
@@ -30,7 +32,6 @@ public class StreamProcessor {
                 .set("spark.cassandra.auth.password", prop.getProperty("tn.enit.transactions.cassandra.password"));
 
         JavaStreamingContext streamingContext = new JavaStreamingContext(conf, Durations.seconds(10));
-        JavaSparkContext sc = streamingContext.sparkContext();
         streamingContext.checkpoint(prop.getProperty("tn.enit.transactions.spark.checkpoint.dir"));
 
         Map<String, Object> kafkaParams = new HashMap<>();
@@ -49,6 +50,10 @@ public class StreamProcessor {
                 ConsumerStrategies.<String, Transaction>Subscribe(topics, kafkaParams)
         );
 
+        // Create SparkSession once
+        SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
+        String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
+
         // Map to get only the Transaction objects
         JavaDStream<Transaction> transactionStream = stream.map(ConsumerRecord::value);
 
@@ -57,12 +62,14 @@ public class StreamProcessor {
                 System.out.println("Received " + rdd.count() + " transactions");
 
                 // Save transactions to Cassandra
-                TransactionProcessor.saveTransactionsToCassandra(transactionStream);
+                TransactionProcessor.saveTransactionsToCassandra(rdd); // Pass the RDD here
 
                 // Save transactions to HDFS
-                SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
-                String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
-                TransactionProcessor.saveTransactionsToHDFS(transactionStream, hdfsPath, sparkSession);
+                try {
+                    TransactionProcessor.saveTransactionsToHDFS(rdd, hdfsPath, sparkSession); // Update if necessary
+                } catch (Exception e) {
+                    System.err.println("Error saving transactions to HDFS: " + e.getMessage());
+                }
 
                 // Extract insights from HDFS
                 TransactionBatch.extractInsights(sparkSession, hdfsPath);

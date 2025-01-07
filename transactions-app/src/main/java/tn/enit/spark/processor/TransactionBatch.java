@@ -46,42 +46,43 @@ public class TransactionBatch {
         Row row = RowFactory.create(totalTransactions);
         Dataset<Row> totalTransactionDataset = sparkSession.createDataFrame(Collections.singletonList(row),
                 DataTypes.createStructType(new StructField[]{
-                        DataTypes.createStructField("total", DataTypes.LongType, false)
+                        DataTypes.createStructField("total", DataTypes.LongType, false) // Ensure this matches your Cassandra schema
                 }));
 
-        // Convert Dataset<Row> to JavaRDD<Row>
-        JavaRDD<Row> totalTransactionRDD = totalTransactionDataset.javaRDD();
-
-        // Save to Cassandra
-        CassandraJavaUtil.javaFunctions(totalTransactionRDD)
-                .writerBuilder("transactionkeyspace", "total_transactions", CassandraJavaUtil.mapToRow(Row.class))
-                .saveToCassandra();
+        // Save to Cassandra using the DataFrame's write method
+        totalTransactionDataset.write()
+                .format("org.apache.spark.sql.cassandra")
+                .options(Collections.singletonMap("keyspace", "transactionkeyspace"))
+                .option("table", "total_transactions")
+                .mode("append") // Use append or overwrite as needed
+                .save();
     }
 
     private static void saveCategoryBreakdownToCassandra(Dataset<Row> categoryBreakdown) {
-        // Convert Dataset<Row> to JavaRDD<Row>
-        JavaRDD<Row> categoryBreakdownRDD = categoryBreakdown.javaRDD();
-
-        CassandraJavaUtil.javaFunctions(categoryBreakdownRDD)
-                .writerBuilder("transactionkeyspace", "category_breakdown", CassandraJavaUtil.mapToRow(Row.class))
-                .saveToCassandra();
+        categoryBreakdown.write()
+                .format("org.apache.spark.sql.cassandra")
+                .options(Collections.singletonMap("keyspace", "transactionkeyspace"))
+                .option("table", "category_breakdown")
+                .mode("append")
+                .save();
     }
 
     private static void saveGeographicDistributionToCassandra(Dataset<Row> geographicDistribution) {
-        // Convert Dataset<Row> to JavaRDD<Row>
-        JavaRDD<Row> geographicDistributionRDD = geographicDistribution.javaRDD();
-
-        CassandraJavaUtil.javaFunctions(geographicDistributionRDD)
-                .writerBuilder("transactionkeyspace", "geographic_distribution", CassandraJavaUtil.mapToRow(Row.class))
-                .saveToCassandra();
+        geographicDistribution.write()
+                .format("org.apache.spark.sql.cassandra")
+                .options(Collections.singletonMap("keyspace", "transactionkeyspace"))
+                .option("table", "geographic_distribution")
+                .mode("append")
+                .save();
     }
 
     private static void saveStatusAnalysisToCassandra(Dataset<Row> statusAnalysis) {
-        // Convert Dataset<Row> to JavaRDD<Row>
-        JavaRDD<Row> statusAnalysisRDD = statusAnalysis.javaRDD();
-
-        CassandraJavaUtil.javaFunctions(statusAnalysisRDD)
-                .writerBuilder("transactionkeyspace", "status_analysis", CassandraJavaUtil.mapToRow(Row.class))
-                .saveToCassandra();
+        statusAnalysis.write()
+                .format("org.apache.spark.sql.cassandra")
+                .options(Collections.singletonMap("keyspace", "transactionkeyspace"))
+                .option("table", "status_analysis")
+                .mode("append")
+                .save();
     }
+
 }
