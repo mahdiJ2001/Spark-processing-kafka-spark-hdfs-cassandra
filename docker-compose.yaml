@@ -126,3 +126,14 @@ services:
     ports:
       - 50075:50075
       - 50010:50010
+
+  flask-app:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - netw
+    depends_on:
+      - cassandra
+    environment:
+      - FLASK_ENV=development

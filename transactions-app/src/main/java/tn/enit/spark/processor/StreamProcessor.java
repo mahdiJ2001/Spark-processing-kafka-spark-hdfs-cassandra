@@ -5,8 +5,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.*;
@@ -16,8 +14,14 @@ import tn.enit.spark.util.PropertyFileReader;
 import tn.enit.spark.util.TransactionDataDeserializer;
 
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class StreamProcessor {
+
+    private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private static final List<Transaction> transactionBuffer = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
         String file = "transactions-processor.properties";
@@ -54,31 +58,36 @@ public class StreamProcessor {
         SparkSession sparkSession = SparkSession.builder().config(conf).getOrCreate();
         String hdfsPath = prop.getProperty("tn.enit.transactions.hdfs") + "transactions/";
 
-        // Map to get only the Transaction objects
         JavaDStream<Transaction> transactionStream = stream.map(ConsumerRecord::value);
 
         transactionStream.foreachRDD(rdd -> {
             if (!rdd.isEmpty()) {
-                System.out.println("Received " + rdd.count() + " transactions");
+                System.out.println("Received " + rdd.count() + " transactions in the current batch");
 
-                // Save transactions to Cassandra
-                TransactionProcessor.saveTransactionsToCassandra(rdd); // Pass the RDD here
+                // Save transactions to Cassandra and HDFS
+                TransactionProcessor.saveTransactionsToCassandra(rdd);
+                TransactionProcessor.saveTransactionsToHDFS(rdd, hdfsPath, sparkSession);
 
-                // Save transactions to HDFS
-                try {
-                    TransactionProcessor.saveTransactionsToHDFS(rdd, hdfsPath, sparkSession); // Update if necessary
-                } catch (Exception e) {
-                    System.err.println("Error saving transactions to HDFS: " + e.getMessage());
-                }
-
-                // Extract insights from HDFS
-                TransactionBatch.extractInsights(sparkSession, hdfsPath);
+                // Add transactions to buffer for insights
+                transactionBuffer.addAll(rdd.collect());
             } else {
                 System.out.println("No transactions received in this batch");
             }
         });
 
-        // Print incoming transactions for debugging
+        // Periodic insight extraction
+        scheduler.scheduleAtFixedRate(() -> {
+            if (!transactionBuffer.isEmpty()) {
+                System.out.println("Extracting insights from buffered transactions...");
+                TransactionBatch.extractInsights(sparkSession, transactionBuffer);
+
+                // Clear the buffer after processing
+                transactionBuffer.clear();
+            } else {
+                System.out.println("No transactions to process for insights.");
+            }
+        }, 0, 1, TimeUnit.MINUTES);
+
         transactionStream.print();
 
         streamingContext.start();
