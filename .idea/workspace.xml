@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2c6597ca-fa6a-4b87-844e-635fffafc6c4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir28/blk_1073757430" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir28/blk_1073757430_16606.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir28/blk_1073757435" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir28/blk_1073757435_16611.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757510" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757510_16686.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757515" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757515_16691.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757517" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757517_16693.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757520" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757520_16696.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757523" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757523_16699.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757651" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757651_16827.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757656" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757656_16832.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757691" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757691_16867.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757692" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757692_16868.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757693" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757693_16869.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757694" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757694_16870.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757695" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir29/blk_1073757695_16871.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757696" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757696_16872.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757697" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757697_16873.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757698" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757698_16874.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757699" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757699_16875.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757700" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/finalized/subdir0/subdir30/blk_1073757700_16876.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/rbw/blk_1073757688" beforeDir="false" afterPath="$PROJECT_DIR$/data/datanode/current/BP-1363794012-172.23.0.3-1735145173654/current/rbw/blk_1073757688" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/datanode/current/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/data/datanode/current/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/namenode/current/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/data/namenode/current/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/namenode/current/edits_inprogress_0000000000000205153" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/namenode/current/fsimage_0000000000000197760" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/namenode/current/fsimage_0000000000000197760.md5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/namenode/current/seen_txid" beforeDir="false" afterPath="$PROJECT_DIR$/data/namenode/current/seen_txid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/namenode/in_use.lock" beforeDir="false" afterPath="$PROJECT_DIR$/data/namenode/in_use.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka-producer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-producer/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions-app/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/transactions-app/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/transactions-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions-app/src/main/java/tn/enit/spark/processor/StreamProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/transactions-app/src/main/java/tn/enit/spark/processor/StreamProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions-app/src/main/java/tn/enit/spark/processor/TransactionBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/transactions-app/src/main/java/tn/enit/spark/processor/TransactionBatch.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "DaoudAA"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mahdiJ2001/RepoBigData.git",
+    "accountId": "ceec7f49-f955-4380-87bc-91d25d4e2a7c"
+  }
+}]]></component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2rJiwoOjXBlUfHolrilQd0gLEs3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Downlads E part/BidgataOnly/RepoBigData",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2c6597ca-fa6a-4b87-844e-635fffafc6c4" name="Changes" comment="" />
+      <created>1736283820226</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736283820226</updated>
+      <workItem from="1736283823493" duration="7296000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

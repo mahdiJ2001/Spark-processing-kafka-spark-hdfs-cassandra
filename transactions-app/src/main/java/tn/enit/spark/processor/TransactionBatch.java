@@ -8,7 +8,9 @@ import org.apache.spark.sql.functions;
 import com.datastax.spark.connector.japi.CassandraJavaUtil;
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.List;
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.StructField;
+import org.apache.spark.sql.RowFactory;
 
 public class TransactionBatch {
 
@@ -47,18 +49,20 @@ public class TransactionBatch {
     }
 
     private static void saveTotalTransactionsToCassandra(SparkSession sparkSession, long totalTransactions) {
-        System.out.println("Saving total transactions to Cassandra...");
-        Dataset<Row> totalTransactionDataset = sparkSession.createDataFrame(
-                Collections.singletonList(new ValueRow(totalTransactions)),
-                ValueRow.class);
+        // Create a Row to save to Cassandra
+        Row row = RowFactory.create(totalTransactions);
+        Dataset<Row> totalTransactionDataset = sparkSession.createDataFrame(Collections.singletonList(row),
+                DataTypes.createStructType(new StructField[]{
+                        DataTypes.createStructField("total", DataTypes.LongType, false) 
+                }));
 
-        // Convert Dataset<Row> to JavaRDD<Row>
-        JavaRDD<Row> totalTransactionRDD = totalTransactionDataset.javaRDD();
-
-        // Save to Cassandra
-        CassandraJavaUtil.javaFunctions(totalTransactionRDD)
-                .writerBuilder("transactionkeyspace", "total_transactions", CassandraJavaUtil.mapToRow(Row.class))
-                .saveToCassandra();
+        // Save to Cassandra using the DataFrame's write method
+        totalTransactionDataset.write()
+                .format("org.apache.spark.sql.cassandra")
+                .options(Collections.singletonMap("keyspace", "transactionkeyspace"))
+                .option("table", "total_transactions")
+                .mode("append") // Use append or overwrite as needed
+                .save();
     }
 
     private static void saveCategoryBreakdownToCassandra(Dataset<Row> categoryBreakdown) {

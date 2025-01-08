@@ -2,18 +2,9 @@ package tn.enit.spark.processor;
 
 import java.util.Properties;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
-import org.apache.spark.streaming.Durations;
-import org.apache.spark.streaming.api.java.*;
-import org.apache.spark.streaming.kafka010.*;
-import tn.enit.spark.entity.Transaction;
 import tn.enit.spark.util.PropertyFileReader;
-import tn.enit.spark.util.TransactionDataDeserializer;
 
 public class BatchProcessor {
     public static void main(String[] args) throws Exception {

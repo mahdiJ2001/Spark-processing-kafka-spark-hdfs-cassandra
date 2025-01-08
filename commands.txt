@@ -31,4 +31,11 @@ docker exec spark-master /spark/bin/spark-submit --class tn.enit.spark.processor
 docker exec cassandra-iot cqlsh --username cassandra --password cassandra -f /schema.cql
 
 docker exec -it cassandra-iot cqlsh -u cassandra -p cassandra
+<<<<<<< Updated upstream
 select * from transactionkeyspace.total_transactions;
+=======
+select * from transactionkeyspace.total_transactions;
+select * from transactionkeyspace.category_breakdown;
+select * from transactionkeyspace.geographic_distribution;
+select * from transactionkeyspace.status_analysis;
+>>>>>>> Stashed changes
