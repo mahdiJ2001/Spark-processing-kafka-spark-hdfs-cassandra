@@ -63,7 +63,7 @@ Here are the insights extracted from the Cassandra database.
 #### Part 1
 Displays the first section of the dashboard.
 
-![Dashboard Part 1](screenshots/dashboard-1.png)
+![Dashboard Part 1](screenshots/dashboard--1.png)
 
 #### Part 2
 Shows the rest of the dashboard.
