@@ -47,7 +47,7 @@ Ensure the following tools are installed on your system:
 ### Kafka Producer Simulation
 This image displays the simulation of transactions being sent via Kafka.
 
-![Kafka Producer](screenshots/kafkaproducer.png)
+![Kafka Producer](screenshots/kafka-producer.png)
 
 ### Transactions in Cassandra Database
 This screenshot shows the transactions registered in the Cassandra database.
