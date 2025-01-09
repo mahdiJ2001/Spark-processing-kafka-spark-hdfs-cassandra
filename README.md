@@ -75,9 +75,3 @@ This image highlights the Docker containers required for the application.
 
 ![Containers Overview](screenshots/containers.png)
 
----
-
-## Installation and Setup
-Provide steps for setting up the project locally or on a server.
-
----
