@@ -16,6 +16,7 @@ This project is a containerized application for simulating, processing, and anal
   - A visual interface displays insights derived from transaction data for monitoring and decision-making.
 
 ## Architecture
+![Architecture](Architecture.jpg)
 
 1. **Kafka Producer**: Simulates transaction streams.
 2. **Kafka Processor**: Consumes the streams and distributes them to:
